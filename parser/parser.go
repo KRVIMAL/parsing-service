@@ -2,45 +2,29 @@ package parser
 
 import (
 	"encoding/hex"
-	"encoding/json"
 	"fmt"
 	"strconv"
 	"time"
 )
 
-func ReadAndProcessDataPacket(buffer []byte) ([]byte, error) {
+func ReadAndProcessDataPacket(buffer []byte) (interface{}, error) {
 	avlData := hex.EncodeToString(buffer)
-
-	var parsedData []byte
+	fmt.Println(avlData, "avldata")
+	var parsedData interface{}
 	dataPacket := avlData[2:6]
 	if dataPacket == "0200" {
 		parsedMap, err := parseHexData(avlData)
 		if err != nil {
 			return nil, fmt.Errorf("error parsing hex data: %v", err)
 		}
-		parsedData, err = json.Marshal(parsedMap)
-		if err != nil {
-			return nil, fmt.Errorf("error converting to JSON: %v", err)
-		}
+		parsedData = parsedMap
 	} else {
 		parsedMap, err := parseHexHistory(avlData)
 		if err != nil {
 			return nil, fmt.Errorf("error parsing hex data: %v", err)
 		}
-
-		// Collect all packets as map objects
-		var allParsedData []map[string]interface{}
-		for _, packet := range parsedMap {
-			allParsedData = append(allParsedData, packet)
-		}
-
-		// Combine all packet maps into a single JSON array
-		parsedData, err = json.Marshal(allParsedData)
-		if err != nil {
-			return nil, fmt.Errorf("error converting packets to JSON array: %v", err)
-		}
+		parsedData = parsedMap
 	}
-
 	return parsedData, nil
 }
 

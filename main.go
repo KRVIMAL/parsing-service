@@ -31,11 +31,11 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
-	// Setup Kafka consumer without a GroupID
+	// Setup Kafka consumer with a unique GroupID
 	reader := kafka.NewReader(kafka.ReaderConfig{
 		Brokers:  []string{cfg.Kafka.URL},
 		Topic:    cfg.Kafka.Topic,
-		GroupID:  "socket310pconsumer", // Set a unique GroupID
+		GroupID:  "socket310pproducer", // Updated GroupID to avoid conflicts
 		MaxBytes: 10e6,
 	})
 	defer reader.Close()

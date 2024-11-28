@@ -1,3 +1,5 @@
+github.com/KRVIMAL/parsing-service v0.0.0-20241120070158-8ab3f5e9a9ad h1:nGyDCCHuwDMom0oT5ukJD/K2jL/XQTOF7EY7eNucYHY=
+github.com/KRVIMAL/parsing-service v0.0.0-20241120070158-8ab3f5e9a9ad/go.mod h1:eu8o+Q/F5qb3rTZHeJWvqOqLlvTdpChnXV6XrBPr5gs=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/klauspost/compress v1.15.9 h1:wKRjX6JRtDdrE9qwa4b/Cip7ACOshUI4smpCQanqjSY=

@@ -15,8 +15,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/KRVIMAL/parsing-service/config"
-	"github.com/KRVIMAL/parsing-service/parser"
+	"github.com/KRVIMAL/parsing-service-310/config"
+	"github.com/KRVIMAL/parsing-service-310/parser"
 	"github.com/segmentio/kafka-go"
 )
 
@@ -35,7 +35,7 @@ func main() {
 	reader := kafka.NewReader(kafka.ReaderConfig{
 		Brokers:  []string{cfg.Kafka.URL},
 		Topic:    cfg.Kafka.Topic,
-		GroupID:  "socket310pproducer", // Updated GroupID to avoid conflicts
+		GroupID:  "socket310producer", // Updated GroupID to avoid conflicts
 		MaxBytes: 10e6,
 	})
 	defer reader.Close()
@@ -166,7 +166,7 @@ func processParsedData(kafkaBrokers []string, parsedData map[string]interface{},
 	}
 
 	// Use a single topic name
-	topicName := "socket_310p_jsonData"
+	topicName := "socket_310_jsonData"
 
 	// Get or create a Kafka writer for the topic
 	writer := getKafkaWriter(kafkaBrokers, topicName, writerCache, writerCacheMutex)

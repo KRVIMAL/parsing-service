@@ -61,7 +61,7 @@ func parseHexData(data string) (map[string]interface{}, error) {
 	parsedData["altitude"] = convertHexToDecimal(data[offset : offset+4])
 	offset += 4
 
-	parsedData["speed"] = convertHexToDecimal(data[offset : offset+4])
+	parsedData["speed"] = convertHexToDecimal(data[offset:offset+4]) / 10
 	offset += 4
 
 	parsedData["bearing"] = convertHexToDecimal(data[offset : offset+4])
@@ -272,7 +272,7 @@ func parseHistoryPacket(data string) (map[string]interface{}, error) {
 	packet["latitude"] = parseGPSCoordinate(data[16:24])
 	packet["longitude"] = parseGPSCoordinate(data[24:32])
 	packet["altitude"] = convertHexToDecimal(data[32:36])
-	packet["speed"] = convertHexToDecimal(data[36:40])
+	packet["speed"] = convertHexToDecimal(data[36:40]) / 10
 	packet["bearing"] = convertHexToDecimal(data[40:44])
 
 	// Combine the date and time hex strings into one string and parse
